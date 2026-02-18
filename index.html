@@ -5,25 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKALDY | Sovereign Intelligence</title>
     <style>
-        body { background-color: #0a0a0a; color: #e0e0e0; font-family: 'Inter', -apple-system, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
-        .container { max-width: 600px; padding: 20px; }
-        .logo { width: 120px; margin-bottom: 20px; filter: drop-shadow(0 0 10px #7b2cbf); }
-        h1 { font-size: 3rem; letter-spacing: 0.5rem; margin: 0; color: #fff; font-weight: 900; }
-        .tagline { color: #7b2cbf; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.2rem; margin-top: 5px; }
-        p { line-height: 1.6; margin: 30px 0; color: #a0a0a0; }
-        .cta { display: inline-block; padding: 12px 30px; border: 2px solid #7b2cbf; color: #fff; text-decoration: none; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
-        .cta:hover { background-color: #7b2cbf; color: #fff; }
-        .footer { margin-top: 50px; font-size: 0.8rem; color: #444; }
+        /* RESET & BASE STYLES */
+        body { 
+            background-color: #050505; /* Deep Obsidian Black */
+            color: #e0e0e0; 
+            font-family: 'Inter', 'Roboto Mono', monospace; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            text-align: center; 
+            padding: 20px;
+        }
+        
+        .container { 
+            max-width: 700px; 
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        /* LOGO STYLING */
+        .logo { 
+            width: 140px; 
+            margin-bottom: 25px; 
+            filter: drop-shadow(0 0 15px rgba(123, 44, 191, 0.4)); /* Purple Glow */
+        }
+
+        /* TYPOGRAPHY */
+        h1 { 
+            font-size: 3.5rem; 
+            letter-spacing: 0.5rem; 
+            margin: 0; 
+            color: #ffffff; 
+            font-weight: 800; 
+            text-transform: uppercase;
+        }
+
+        .tagline { 
+            color: #9d4edd; /* Lighter Purple for contrast */
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 0.2rem; 
+            margin-top: 10px; 
+            margin-bottom: 40px;
+        }
+
+        p { 
+            font-size: 1.1rem;
+            line-height: 1.7; 
+            margin-bottom: 50px; 
+            color: #b0b0b0; 
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* BUTTON */
+        .cta { 
+            display: inline-block; 
+            padding: 16px 40px; 
+            border: 1px solid #7b2cbf; 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            background: rgba(123, 44, 191, 0.1);
+        }
+
+        .cta:hover { 
+            background-color: #7b2cbf; 
+            box-shadow: 0 0 20px rgba(123, 44, 191, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        .footer { 
+            margin-top: 80px; 
+            font-size: 0.75rem; 
+            color: #444; 
+            letter-spacing: 0.05rem;
+        }
+
+        /* ANIMATION */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="YOUR_LOGO_URL_HERE" alt="Skaldy Logo" class="logo">
+        <img src="logo.png" alt="Skaldy Logo" class="logo">
+        
         <h1>SKALDY</h1>
         <div class="tagline">Sovereign Intelligence</div>
-        <p>Private. Local. Absolute. We provide high-performance compute infrastructure for the era of sovereign AI and secure data processing.</p>
+        
+        <p>Private. Local. Absolute. <br>
+        We provide high-performance compute infrastructure for the era of sovereign AI and secure data processing.</p>
+        
         <a href="mailto:stuart@skaldy.net" class="cta">Initialize Contact</a>
-        <div class="footer">Wichita, Kansas | &copy; 2026 Skaldy LLC</div>
+        
+        <div class="footer">
+            WICHITA, KANSAS &nbsp;|&nbsp; &copy; 2026 SKALDY LLC
+        </div>
     </div>
 </body>
 </html>
