@@ -1,0 +1,200 @@
+---
+import { getCollection } from 'astro:content';
+const posts = await getCollection('intel');
+posts.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+const featuredPost = posts[0];
+const otherPosts = posts.slice(1);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKALDY | Intel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            background-color: #050505;
+            color: #e0e0e0; 
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 40px 20px;
+        }
+        
+        .container { 
+            width: 100%;
+            max-width: 800px; 
+            animation: fadeIn 1s ease-in;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo { 
+            width: 100px; 
+            margin-bottom: 20px; 
+            filter: drop-shadow(0 0 15px rgba(123, 44, 191, 0.4));
+        }
+
+        h1 { 
+            font-size: 2rem; 
+            letter-spacing: 0.3rem; 
+            color: #ffffff; 
+            font-weight: 800; 
+            text-transform: uppercase;
+        }
+
+        /* Featured Intelligence Section */
+        .featured-wrapper {
+            background-color: #1a1a1a;
+            border: 1px solid #7b2cbf;
+            padding: 30px;
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            box-shadow: 0 0 25px rgba(123, 44, 191, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .featured-wrapper {
+                grid-template-columns: 200px 1fr;
+            }
+        }
+        
+        .featured-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #333; /* Placeholder */
+        }
+        
+        .featured-content h2 {
+            font-size: 1.8rem;
+            color: #9d4edd;
+            margin: 0 0 10px 0;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .featured-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #b0b0b0;
+            margin: 0;
+        }
+
+        /* Log List Section */
+        .log-list-title {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            color: #7b2cbf;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .log-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .log-item {
+            margin-bottom: 20px;
+        }
+
+        .log-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: #e0e0e0;
+            padding: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .log-link:hover {
+            background-color: rgba(123, 44, 191, 0.1);
+            border-color: #7b2cbf;
+            color: #fff;
+        }
+
+        .log-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .log-date {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            color: #9d4edd;
+        }
+        
+        .footer { 
+            margin-top: 80px; 
+            font-size: 0.75rem; 
+            color: #444; 
+            letter-spacing: 0.05rem;
+            text-align: center;
+        }
+
+        /* ANIMATION */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/"><img src="/logo.png" alt="Skaldy Logo" class="logo"></a>
+            <h1>Project Intelligence</h1>
+        </header>
+
+        <main>
+            <!-- Featured Intelligence -->
+            {featuredPost &&
+                <section class="featured-wrapper">
+                    <img src={featuredPost.data.thumbnail} alt={featuredPost.data.title + " thumbnail"} class="featured-thumbnail" />
+                    <div class="featured-content">
+                        <h2>{featuredPost.data.title}</h2>
+                        <p>{featuredPost.data.summary}</p>
+                        <a href={`/intel/${featuredPost.slug}`} class="cta-link" style="display:inline-block; margin-top: 20px; color: #9d4edd; text-decoration: none; font-weight:600;">Read More &rarr;</a>
+                    </div>
+                </section>
+            }
+
+            <!-- Other Logs -->
+            <section>
+                <h3 class="log-list-title">Archive</h3>
+                <ul class="log-list">
+                    {otherPosts.map(post => (
+                        <li class="log-item">
+                            <a href={`/intel/${post.slug}`} class="log-link">
+                                <span class="log-title">{post.data.title}</span>
+                                <span class="log-date">{new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        </main>
+        
+        <div class="footer">
+            WICHITA, KANSAS &nbsp;|&nbsp; &copy; 2026 SKALDY LLC
+        </div>
+    </div>
+</body>
+</html>

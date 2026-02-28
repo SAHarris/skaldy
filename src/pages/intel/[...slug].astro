@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import IntelLayout from '../../layouts/IntelLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('intel');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+<IntelLayout>
+  <Content />
+</IntelLayout>
