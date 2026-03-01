@@ -1,4 +1,5 @@
 ---
+const base = import.meta.env.BASE_URL;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +101,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="/logo.png" alt="Skaldy Logo" class="logo">
+        <img src={`${base}/logo.png`} alt="Skaldy Logo" class="logo">
         
         <div class="tagline">Sovereign Intelligence</div>
         
@@ -108,8 +109,8 @@
         We provide high-performance compute infrastructure for the era of sovereign AI and secure data processing.</p>
         
         <div class="button-group">
-            <a href="/intel" class="cta">Intel</a>
-            <a href="mailto:stuart@skaldy.net" class="cta">Initialize Contact</a>
+            <a href={`${base}/intel`} class="cta">Intel</a>
+            <a href="mailto:stuart@skaldy.net?subject=Inquiry&body=I am interested in learning more about Skaldy." class="cta">Initialize Contact</a>
         </div>
         
         <div class="footer">
